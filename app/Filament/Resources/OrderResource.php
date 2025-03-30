@@ -39,7 +39,7 @@ class OrderResource extends Resource
 
             Select::make('user_id')
                 ->label('User')
-                ->relationship('user', 'username')
+                ->relationship('user', 'name')
                 ->required(),
 
             Select::make('status')
