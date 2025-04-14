@@ -14,7 +14,7 @@ Follow these steps to set up the project after cloning from GitHub.
 
 ### 1️⃣ **Clone the Repository**
 ```sh
-git clone https://github.com/genta-bahana-nagari/kelompok_ukk.git
+git clone -b dev https://github.com/genta-bahana-nagari/kelompok_ukk.git
 cd kelompok_ukk # or your repo directory
 ```
 
