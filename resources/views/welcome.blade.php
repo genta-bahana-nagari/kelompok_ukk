@@ -23,9 +23,11 @@
         <header>
             @livewire('navigation-menu')
         </header>
-
         <div>
             @livewire('home-page')
         </div>
+        <footer>
+            @livewire('footer')
+        </footer>
     </body>
 </html>
