@@ -70,7 +70,11 @@ class PhoneResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')->circular(),
+                ImageColumn::make('image')
+                    ->label('Image')
+                    ->circular() // optional, for rounded preview
+                    ->url(fn ($record) => asset('storage/' . $record->image))
+                    ->height(50), // optional
                 TextColumn::make('title')->sortable()->searchable(),
                 TextColumn::make('body')->limit(50),
                 TextColumn::make('stok')->sortable(),
