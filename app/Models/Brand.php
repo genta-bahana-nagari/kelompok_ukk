@@ -11,6 +11,11 @@ class Brand extends Model
 
     protected $table='brands';
 
+    protected $fillable = [
+    'brand',
+        // add any other fillable fields here
+    ];
+
     public function phone()
     {
         return $this->hasMany(Phone::class);
