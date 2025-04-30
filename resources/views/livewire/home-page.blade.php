@@ -13,13 +13,16 @@
             <a href="#" class="text-blue-500 hover:underline transition-all duration-200">Lihat Semua</a>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            @foreach (range(1, 4) as $i)
-                <div class="border p-4 rounded-lg shadow-sm hover:shadow-md transition">
-                    <img src="https://via.placeholder.com/150" alt="Produk" class="w-full h-32 object-cover rounded mb-2">
-                    <h3 class="text-sm font-semibold mb-1">KopiPhone X 30 PRIME (12/512GB)</h3>
-                    <p class="text-orange-600 font-bold">Rp25.409.000</p>
-                    <p class="text-xs text-gray-500">⭐ 5.0 | 100+ Terjual</p>
+            @foreach ($phones as $phone)
+            <div class="border p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                <img src="{{ asset('storage/' . $phone->image) }}" alt="{{ $phone->title }}" class="object-cover">
+                <div class="p-3">
+                    <p class="text-xs text-gray-400 mb-1">{{ $phone->title }}</p>
+                    <h3 class="text-sm font-semibold leading-tight mb-1">{{ Str::limit($phone->body, 50) }}</h3>
+                    <p class="text-orange-600 font-bold mb-1">Stok: {{ $phone->stok }}</p>
+                    <div class="text-xs text-gray-500">Status: {{ $phone->status }}</div>
                 </div>
+            </div>
             @endforeach
         </div>
     </section>

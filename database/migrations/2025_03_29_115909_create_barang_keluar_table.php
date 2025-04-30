@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('barang_keluar', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_keluar');
-            $table->integer('qty_keluar')->default(1);
             $table->foreignId('phone_id')->constrained('phones')->onDelete('cascade');
-            $table->string('status');
+            $table->integer('qty_keluar')->default(1);
             $table->timestamps();
         });
     }

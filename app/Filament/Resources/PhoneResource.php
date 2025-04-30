@@ -30,39 +30,45 @@ class PhoneResource extends Resource
     {
         return $form
             ->schema([
-            FileUpload::make('image')
-                ->image()
-                ->directory('hp-images')
-                ->columnSpanFull(),
+                FileUpload::make('image')
+                    ->image()
+                    ->directory('hp-images')
+                    ->columnSpanFull(),
 
-            TextInput::make('title')
-                ->label('Nama HP')
-                ->required()
-                ->maxLength(255),
+                TextInput::make('title')
+                    ->label('Nama HP')
+                    ->required()
+                    ->maxLength(255),
 
-            Textarea::make('body')
-                ->label('Deskripsi')
-                ->rows(4)
-                ->required(),
+                Textarea::make('body')
+                    ->label('Deskripsi')
+                    ->rows(4)
+                    ->required(),
 
-            TextInput::make('stok')
-                ->label('Jumlah Stok')
-                ->numeric()
-                ->required()
-                ->default(0),
+                TextInput::make('stok')
+                    ->label('Jumlah Stok')
+                    ->numeric()
+                    ->required()
+                    ->default(0),
 
-            Select::make('status')
-                ->label('Status')
-                ->options([
-                    'Tersedia' => 'Tersedia',
-                    'Habis' => 'Habis',
-                ])
-                ->required(),
+                TextInput::make('harga')
+                    ->label('Harga')
+                    ->numeric()
+                    ->required(),
 
-            Select::make('brand_id')
-                ->label('Brand')
-                ->relationship('brand', 'brand')
-                ->required(),
+                Select::make('status')
+                    ->label('Status')
+                    ->options([
+                        'Tersedia' => 'Tersedia',
+                        'Habis' => 'Habis',
+                    ])
+                    ->required(),
+
+                Select::make('brand_id')
+                    ->label('Brand')
+                    ->relationship('brand', 'brand')
+                    ->required(),
+
             ]);
     }
 
@@ -73,13 +79,14 @@ class PhoneResource extends Resource
                 ImageColumn::make('image')
                     ->label('Image')
                     ->circular() // optional, for rounded preview
-                    ->url(fn ($record) => asset('storage/' . $record->image))
+                    ->url(fn($record) => asset('storage/' . $record->image))
                     ->height(50), // optional
                 TextColumn::make('title')->sortable()->searchable(),
                 TextColumn::make('body')->limit(50),
                 TextColumn::make('stok')->sortable(),
                 TextColumn::make('status')->badge(),
                 TextColumn::make('brand.brand')->label('Brand')->sortable(),
+                TextColumn::make('harga')->money('IDR')->sortable(),
                 TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([

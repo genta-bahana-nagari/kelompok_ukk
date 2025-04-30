@@ -10,6 +10,13 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -23,7 +30,16 @@ class MasukResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Select::make('phone_id')
+                    ->label('Phone')
+                    ->relationship('phone', 'title')
+                    ->required(),
+
+                TextInput::make('qty_masuk')
+                    ->label('QTY_Masuk')
+                    ->numeric()
+                    ->required(),                   
+
             ]);
     }
 
@@ -31,13 +47,21 @@ class MasukResource extends Resource
     {
         return $table
             ->columns([
-                //
+                ImageColumn::make('phone.image')
+                    ->label('Image')
+                    ->circular() // optional, for rounded preview
+                    ->url(fn($record) => asset('storage/' . $record->image))
+                    ->height(50), // optional
+                TextColumn::make('phone.title')->label('Phone')->sortable(),
+                TextColumn::make('qty_masuk')->label('QTY_Masuk')->sortable(),
+                TextColumn::make('created_at')->dateTime(),
+                TextColumn::make('updated_at')->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -58,7 +82,7 @@ class MasukResource extends Resource
         return [
             'index' => Pages\ListMasuks::route('/'),
             'create' => Pages\CreateMasuk::route('/create'),
-            'edit' => Pages\EditMasuk::route('/{record}/edit'),
+            // 'edit' => Pages\EditMasuk::route('/{record}/edit'),
         ];
     }
 }

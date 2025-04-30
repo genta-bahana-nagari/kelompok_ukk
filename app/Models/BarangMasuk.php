@@ -11,10 +11,25 @@ class BarangMasuk extends Model
 
     protected $table='barang_masuk';
 
-    protected $fillable = ['tgl_masuk', 'qty_masuk', 'phone', 'status'];
+    protected $fillable = ['phone_id', 'qty_masuk'];
 
-    public function brand()
+    public function phone()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Phone::class);
     }
+
+    protected static function booted()
+    {
+        parent::boot();
+
+        static::addGlobalScope('orderByDate', function ($query) {
+            $query->orderBy('created_at', 'desc')
+                  ->orderBy('updated_at', 'desc');
+        });
+    }
+
+    // public function getImageUrlAttribute()
+    // {
+    //     return asset('storage/' . $this->image);
+    // }
 }

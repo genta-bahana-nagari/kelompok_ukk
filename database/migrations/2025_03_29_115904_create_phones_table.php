@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('title');
-            $table->text('body');
+            $table->text('body')->nullable();
             $table->integer('stok');
             $table->string('status');
-            $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');
+            $table->unsignedBigInteger('brand_id');
+            $table->integer('harga', false, true);
             $table->timestamps();
         });
     }

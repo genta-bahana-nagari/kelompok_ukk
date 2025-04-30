@@ -8,6 +8,9 @@ use App\Models\BarangKeluar;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,7 +26,15 @@ class KeluarResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Select::make('phone_id')
+                    ->label('Phone')
+                    ->relationship('phone', 'title')
+                    ->required(),
+
+                TextInput::make('qty_masuk')
+                    ->label('QTY_Masuk')
+                    ->numeric()
+                    ->required(),   
             ]);
     }
 
@@ -31,7 +42,15 @@ class KeluarResource extends Resource
     {
         return $table
             ->columns([
-                //
+                ImageColumn::make('phone.image')
+                    ->label('Image')
+                    ->circular() // optional, for rounded preview
+                    ->url(fn($record) => asset('storage/' . $record->image))
+                    ->height(50), // optional
+                TextColumn::make('phone.title')->label('Phone')->sortable(),
+                TextColumn::make('qty_masuk')->label('QTY_Masuk')->sortable(),
+                TextColumn::make('created_at')->dateTime(),
+                TextColumn::make('updated_at')->dateTime()
             ])
             ->filters([
                 //

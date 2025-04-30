@@ -11,10 +11,16 @@ class Phone extends Model
 
     protected $table='phones';
 
-    protected $fillable = ['image', 'title', 'body', 'stok', 'status', 'brand_id'];
+    protected $fillable = ['image', 'title', 'body', 'stok', 'status', 'brand_id', 'harga'];
 
     public function brand()
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function getImageUrlAttribute()
+    {
+        return asset('storage/' . $this->image);
+    }
+    
 }

@@ -28,15 +28,20 @@ class PaymentResource extends Resource
     {
         return $form
             ->schema([
-            TextInput::make('title')
-                ->label('Judul Metode Pembayaran')
-                ->required()
-                ->maxLength(255),
-
-            Textarea::make('body')
-                ->label('Deskripsi')
-                ->rows(4)
+            Select::make('metode')
+                ->label('Metode Pembayaran')
+                ->options([
+                    'DANA' => 'DANA',
+                    'GOPAY' => 'GOPAY',
+                    'OVO' => 'OVO',
+                    'ShopeePay' => 'ShopeePay',
+                ])
                 ->required(),
+
+            // Textarea::make('body')
+            //     ->label('Deskripsi')
+            //     ->rows(4)
+            //     ->required(),
 
             Select::make('user_id')
                 ->label('User')
@@ -63,10 +68,9 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
-                TextColumn::make('title')->sortable()->searchable(),
-                TextColumn::make('users.name')->label('User')->sortable(),
-                TextColumn::make('orders.id')->label('Order ID')->sortable(),
+                TextColumn::make('metode')->sortable()->searchable(),
+                TextColumn::make('user.name')->label('User')->sortable(),
+                TextColumn::make('order.id')->label('Order ID')->sortable(),
                 TextColumn::make('status')->badge(),
                 TextColumn::make('created_at')->dateTime(),
             ])->filters([
@@ -77,6 +81,16 @@ class PaymentResource extends Resource
                         'success' => 'Success',
                         'failed' => 'Failed',
                     ]),
+
+                SelectFilter::make('metode')
+                    ->label('Filter Metode Pembayaran')
+                    ->options([
+                        'DANA' => 'DANA',
+                        'GOPAY' => 'GOPAY',
+                        'OVO' => 'OVO',
+                        'ShopeePay' => 'ShopeePay',
+                    ])
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

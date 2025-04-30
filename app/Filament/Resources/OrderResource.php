@@ -58,8 +58,7 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
-                TextColumn::make('user.username')->label('User')->sortable(),
+                TextColumn::make('user.name')->label('User')->sortable(),
                 TextColumn::make('order_date')->date()->sortable(),
                 TextColumn::make('total')->money('IDR')->sortable(),
                 TextColumn::make('status')->badge(),
@@ -67,12 +66,12 @@ class OrderResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('status')
-                ->label('Filter Status')
-                ->options([
-                    'pending' => 'Pending',
-                    'paid' => 'Paid',
-                    'shipped' => 'Shipped',
-                    'cancelled' => 'Cancelled',
+                    ->label('Filter Status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'paid' => 'Paid',
+                        'shipped' => 'Shipped',
+                        'cancelled' => 'Cancelled',
                 ]),
             ])
             ->actions([
