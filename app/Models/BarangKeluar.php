@@ -11,10 +11,21 @@ class BarangKeluar extends Model
 
     protected $table='barang_keluar';
 
-    protected $fillable = ['tgl_keluar', 'qty_keluar', 'phone', 'status'];
+    protected $fillable = ['phone_id', 'qty_keluar'];
 
     public function brand()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Phone::class);
     }
+
+    protected static function booted()
+    {
+        parent::boot();
+
+        static::addGlobalScope('orderByDate', function ($query) {
+            $query->orderBy('created_at', 'desc')
+                  ->orderBy('updated_at', 'desc');
+        });
+    }
+
 }

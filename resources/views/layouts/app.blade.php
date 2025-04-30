@@ -19,6 +19,11 @@
     </head>
     <body class="font-sans antialiased">
         @include('navigation-menu')
-        <livewire:home-page>
+
+        <main class="min-h-screen">
+            @yield('content')
+        </main>
+
+        @livewireScripts
     </body>
 </html>

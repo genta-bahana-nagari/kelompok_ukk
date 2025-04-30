@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,8 +32,8 @@ class KeluarResource extends Resource
                     ->relationship('phone', 'title')
                     ->required(),
 
-                TextInput::make('qty_masuk')
-                    ->label('QTY_Masuk')
+                TextInput::make('qty_keluar')
+                    ->label('QTY_Keluar')
                     ->numeric()
                     ->required(),   
             ]);
@@ -48,7 +49,7 @@ class KeluarResource extends Resource
                     ->url(fn($record) => asset('storage/' . $record->image))
                     ->height(50), // optional
                 TextColumn::make('phone.title')->label('Phone')->sortable(),
-                TextColumn::make('qty_masuk')->label('QTY_Masuk')->sortable(),
+                TextColumn::make('qty_keluar')->label('QTY_Keluar')->sortable(),
                 TextColumn::make('created_at')->dateTime(),
                 TextColumn::make('updated_at')->dateTime()
             ])
