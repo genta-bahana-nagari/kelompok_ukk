@@ -13,7 +13,7 @@ class BarangKeluar extends Model
 
     protected $fillable = ['phone_id', 'qty_keluar'];
 
-    public function brand()
+    public function phone()
     {
         return $this->belongsTo(Phone::class);
     }

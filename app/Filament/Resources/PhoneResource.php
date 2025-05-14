@@ -25,6 +25,8 @@ class PhoneResource extends Resource
     protected static ?string $model = Phone::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-device-phone-mobile';
+    
+    protected static ?string $navigationGroup = '';
 
     public static function form(Form $form): Form
     {

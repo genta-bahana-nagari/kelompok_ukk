@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-@section('title', 'Dashboard')
-
-@section('content')
-    <livewire:home-page />
-@endsection
+<livewire:navigation />
+<livewire:home-page />
+<livewire:footer />

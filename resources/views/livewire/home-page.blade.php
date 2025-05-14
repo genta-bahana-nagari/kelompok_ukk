@@ -19,6 +19,7 @@
                 <div class="p-3">
                     <p class="text-xs text-gray-400 mb-1">{{ $phone->title }}</p>
                     <h3 class="text-sm font-semibold leading-tight mb-1">{{ Str::limit($phone->body, 50) }}</h3>
+                    <p class="text-black font-bold mb-1">Harga: Rp{{ $phone->harga }}</p>
                     <p class="text-orange-600 font-bold mb-1">Stok: {{ $phone->stok }}</p>
                     <div class="text-xs text-gray-500">Status: {{ $phone->status }}</div>
                 </div>
@@ -47,6 +48,7 @@
                 <div class="p-3">
                     <p class="text-xs text-gray-400 mb-1">{{ $phone->title }}</p>
                     <h3 class="text-sm font-semibold leading-tight mb-1">{{ Str::limit($phone->body, 50) }}</h3>
+                    <p class="text-black font-bold mb-1">Harga: Rp{{ $phone->harga }}</p>
                     <p class="text-orange-600 font-bold mb-1">Stok: {{ $phone->stok }}</p>
                     <div class="text-xs text-gray-500">Status: {{ $phone->status }}</div>
                 </div>
@@ -64,8 +66,8 @@
 
     <!-- Testimonial -->
     <section class="mt-6 mx-6">
-        <h1 class="text-lg font-bold text-center">
-            Just a simple sentence for placeholder
+        <h1 class="text-2xl py-12 font-bold text-center">
+            Just a simple sentence for placeholder. Just enjoy your shopping :)
         </h1>
     </section>
 </div>

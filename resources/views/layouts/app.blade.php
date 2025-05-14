@@ -24,6 +24,8 @@
             @yield('content')
         </main>
 
+        @include('footer')
+        
         @livewireScripts
     </body>
 </html>

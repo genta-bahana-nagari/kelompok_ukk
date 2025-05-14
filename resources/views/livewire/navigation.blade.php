@@ -4,7 +4,7 @@
             {{-- Logo --}}
             <div class="flex items-center space-x-3">
                 <a href="{{ route('dashboard') }}">
-                    <img src="/path/to/logo.png" class="w-8 h-auto" alt="Logo">
+                    <img src="{{ asset('site-logo.png') }}" class="w-8" alt="Logo">
                 </a>
                 <span class="font-bold text-lg text-gray-800 hidden sm:inline">TokoKeren</span>
             </div>

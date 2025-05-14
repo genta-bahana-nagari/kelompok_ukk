@@ -35,11 +35,18 @@ class OrderResource extends Resource
             TextInput::make('total')
                 ->label('Total Amount')
                 ->numeric()
-                ->required(),
+                ->minValue(0) // Validasi sisi client (UI)
+                ->required()
+                ->rules(['numeric', 'min:0']), // Validasi sisi server
 
             Select::make('user_id')
                 ->label('User')
                 ->relationship('user', 'name')
+                ->required(),
+
+            Select::make('phone_id')
+                ->label('Phone')
+                ->relationship('phone', 'id')
                 ->required(),
 
             Select::make('status')

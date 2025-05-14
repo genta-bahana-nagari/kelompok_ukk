@@ -57,7 +57,7 @@ class KeluarResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -78,7 +78,7 @@ class KeluarResource extends Resource
         return [
             'index' => Pages\ListKeluars::route('/'),
             'create' => Pages\CreateKeluar::route('/create'),
-            'edit' => Pages\EditKeluar::route('/{record}/edit'),
+            // 'edit' => Pages\EditKeluar::route('/{record}/edit'),
         ];
     }
 }

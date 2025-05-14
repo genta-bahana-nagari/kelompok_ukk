@@ -38,19 +38,14 @@ class PaymentResource extends Resource
                 ])
                 ->required(),
 
-            // Textarea::make('body')
-            //     ->label('Deskripsi')
-            //     ->rows(4)
-            //     ->required(),
-
             Select::make('user_id')
                 ->label('User')
-                ->relationship('user', 'name') // Gantilah 'name' sesuai kolom username yang benar
+                ->relationship('user', 'name')
                 ->required(),
 
             Select::make('order_id')
                 ->label('Order')
-                ->relationship('order', 'id') // Menggunakan method order(), bukan 'orders'
+                ->relationship('order', 'id')
                 ->required(),
 
             Select::make('status')

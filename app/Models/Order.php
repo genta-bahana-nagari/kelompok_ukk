@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Order extends Model
 {
@@ -21,5 +22,19 @@ class Order extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function phone()
+    {
+        return $this->belongsTo(Phone::class);
+    }
+
+    protected function total(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->items?->sum(function ($item) {
+                return optional($item->phone)->harga * $item->total;
+            }) ?? 0,
+        );
     }
 }
